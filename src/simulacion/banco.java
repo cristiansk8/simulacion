@@ -22,31 +22,49 @@ public class banco {
         numero = (int) (Math.random() * (10 - 3 + 1) + 3);
         return numero;
     }
-    public cliente cli(){
+
+    public cliente cli() {
         cliente c = new cliente(aleatorioClientes());
-        
+
         return c;
-        
-        
+
     }
 
     public String simulacion() {
+        int cont = 0;
         boolean cajero[] = new boolean[5];
-        cliente c1 = new cliente(aleatorioClientes());
-        cliente c2 = new cliente(aleatorioClientes());
-        c1.setTienpoAtencion(aleatorioEspera());
-        c2.setTienpoAtencion(aleatorioEspera());
 
-        for (int i = 1; i < 100; i++) {
+        cliente[] c1 = new cliente[10];
+        c1[0] = new cliente(aleatorioClientes());
+        c1[1] = new cliente(aleatorioClientes() + c1[0].horaLlegada);
+        c1[2] = new cliente(aleatorioClientes() + c1[1].horaLlegada);
+        c1[3] = new cliente(aleatorioClientes() + c1[2].horaLlegada);
+        c1[4] = new cliente(aleatorioClientes() + c1[3].horaLlegada);
+        c1[5] = new cliente(aleatorioClientes() + c1[4].horaLlegada);
+        c1[6] = new cliente(aleatorioClientes() + c1[5].horaLlegada);
+        c1[7] = new cliente(aleatorioClientes() + c1[6].horaLlegada);
+        c1[8] = new cliente(aleatorioClientes() + c1[7].horaLlegada);
+        c1[9] = new cliente(aleatorioClientes() + c1[8].horaLlegada);
 
-            System.out.println("minuto " + i);
-            if (i < c1.getHoraLlegada() + c1.getTienpoAtencion() && i >= c1.getHoraLlegada()) {
-                
-                System.out.println(" antendiendo  c1" + "cajero 1");
-            }
-            if (i < c2.getHoraLlegada() + c1.getHoraLlegada() + c2.getTienpoAtencion() && i >= c2.getHoraLlegada() + c1.getHoraLlegada()) {
+        c1[0].setTienpoAtencion(aleatorioEspera());
+        c1[1].setTienpoAtencion(aleatorioEspera());
+        c1[2].setTienpoAtencion(aleatorioEspera());
+        c1[3].setTienpoAtencion(aleatorioEspera());
+        c1[4].setTienpoAtencion(aleatorioEspera());
+        c1[5].setTienpoAtencion(aleatorioEspera());
+        c1[6].setTienpoAtencion(aleatorioEspera());
+        c1[7].setTienpoAtencion(aleatorioEspera());
+        c1[8].setTienpoAtencion(aleatorioEspera());
+        c1[9].setTienpoAtencion(aleatorioEspera());
 
-                System.out.println(" antendiendo  c2");
+        for (int i = 1; i < 120; i++) {
+            for (int j = 0; j < c1.length; j++) {
+                int espera = aleatorioEspera();
+                if (i<c1[j].horaLlegada+c1[j].getTienpoAtencion() && i>=c1[j].horaLlegada) {
+                    System.out.println("minuto  " + i + "  cliente "+ j);
+                    System.out.println("atendiendo");
+                }
+
             }
 
         }
