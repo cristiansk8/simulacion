@@ -22,22 +22,44 @@ public class banco {
         numero = (int) (Math.random() * (10 - 3 + 1) + 3);
         return numero;
     }
+    public cliente cli(){
+        cliente c = new cliente(aleatorioClientes());
+        
+        return c;
+        
+        
+    }
 
     public String simulacion() {
-        boolean c1 = false;
-        int c = aleatorioClientes();
-        System.out.println(c);
-        int e = aleatorioEspera();
-        for (int i = 1; i < 61; i++) {
+        boolean cajero[] = new boolean[5];
+        cliente c1 = new cliente(aleatorioClientes());
+        cliente c2 = new cliente(aleatorioClientes());
+        c1.setTienpoAtencion(aleatorioEspera());
+        c2.setTienpoAtencion(aleatorioEspera());
+
+        for (int i = 1; i < 100; i++) {
 
             System.out.println("minuto " + i);
-            if (i<c+e && i>=c) {
-                c1 = true;
-                System.out.println(" antendiendo c1");
+            if (i < c1.getHoraLlegada() + c1.getTienpoAtencion() && i >= c1.getHoraLlegada()) {
+                
+                System.out.println(" antendiendo  c1" + "cajero 1");
+            }
+            if (i < c2.getHoraLlegada() + c1.getHoraLlegada() + c2.getTienpoAtencion() && i >= c2.getHoraLlegada() + c1.getHoraLlegada()) {
+
+                System.out.println(" antendiendo  c2");
             }
 
         }
         return null;
+    }
+
+    public String simulacion2() {
+        boolean cajero[] = new boolean[5];
+        for (int i = 0; i < cajero.length; i++) {
+            System.out.println(cajero[i]);
+        }
+        return null;
+
     }
 
 }
