@@ -12,72 +12,87 @@ package simulacion;
 public class banco {
 
     public int aleatorioClientes() {
-        int numero = 0;
-        numero = (int) (Math.random() * (8 - 2 + 1) + 2);
+
+        double numero = 0;
+        numero = Math.round(2 + (8 - 2) * aleatorio());
+
+        return (int) numero;
+    }
+
+    public double aleatorio() {
+        double numero = (double) (Math.random() * 1) + 0;
         return numero;
     }
 
     public int aleatorioEspera() {
-        int numero = 0;
-        numero = (int) (Math.random() * (10 - 3 + 1) + 3);
-        return numero;
+        double random = aleatorio();
+        int num = 0;
+        if (random >= (3.0 / 7.0)) {
+            num = (int) Math.round(((-5.0 / 7.0) + (Math.sqrt((1.0 / 7.0) - ((1.0 / 7.0) * random)))) / (-1.0 / 14.0));
+        } else {
+            num = (int) Math.round(Math.sqrt(21 * random) + 3);
+        }
+        return num;
     }
 
-    public cliente cli() {
-        cliente c = new cliente(aleatorioClientes());
-
+    public cliente[] clientes() {
+        cliente[] c = new cliente[100];
+        c[0] = new cliente(aleatorioClientes());
+        c[0].setTienpoAtencion(aleatorioEspera());
+        int cont = 0;
+        for (int i = 1; i < c.length; i++) {
+            c[i] = new cliente(aleatorioClientes() + c[i - 1].horaLlegada);
+            c[i].setTienpoAtencion(aleatorioEspera());
+            c[i].setEsatdo("libre");
+            cont = cont + 1;
+            //System.out.println("cliente "+cont +" hora llegada "+c[i].getHoraLlegada()+" tiempo espera "+ c[i].tienpoAtencion);
+        }
         return c;
-
     }
 
     public String simulacion() {
         int cont = 0;
-        boolean cajero[] = new boolean[5];
-
-        cliente[] c1 = new cliente[10];
-        c1[0] = new cliente(aleatorioClientes());
-        c1[1] = new cliente(aleatorioClientes() + c1[0].horaLlegada);
-        c1[2] = new cliente(aleatorioClientes() + c1[1].horaLlegada);
-        c1[3] = new cliente(aleatorioClientes() + c1[2].horaLlegada);
-        c1[4] = new cliente(aleatorioClientes() + c1[3].horaLlegada);
-        c1[5] = new cliente(aleatorioClientes() + c1[4].horaLlegada);
-        c1[6] = new cliente(aleatorioClientes() + c1[5].horaLlegada);
-        c1[7] = new cliente(aleatorioClientes() + c1[6].horaLlegada);
-        c1[8] = new cliente(aleatorioClientes() + c1[7].horaLlegada);
-        c1[9] = new cliente(aleatorioClientes() + c1[8].horaLlegada);
-
-        c1[0].setTienpoAtencion(aleatorioEspera());
-        c1[1].setTienpoAtencion(aleatorioEspera());
-        c1[2].setTienpoAtencion(aleatorioEspera());
-        c1[3].setTienpoAtencion(aleatorioEspera());
-        c1[4].setTienpoAtencion(aleatorioEspera());
-        c1[5].setTienpoAtencion(aleatorioEspera());
-        c1[6].setTienpoAtencion(aleatorioEspera());
-        c1[7].setTienpoAtencion(aleatorioEspera());
-        c1[8].setTienpoAtencion(aleatorioEspera());
-        c1[9].setTienpoAtencion(aleatorioEspera());
-
+        int[] cajeros = new int[5];
+        cliente[] c = clientes();
         for (int i = 1; i < 120; i++) {
-            for (int j = 0; j < c1.length; j++) {
-                int espera = aleatorioEspera();
-                if (i<c1[j].horaLlegada+c1[j].getTienpoAtencion() && i>=c1[j].horaLlegada) {
-                    System.out.println("minuto  " + i + "  cliente "+ j);
-                    System.out.println("atendiendo");
-                }
+            for (int j = 0; j < c.length; j++) {
+                cajeros[0] = c[0].getHoraLlegada() + c[0].getTienpoAtencion();
+                if (c[j].getHoraLlegada() == i) {
 
+                    cont = cont + 1;
+                    int tiempoSalida = c[j].getHoraLlegada() + c[j].getTienpoAtencion();
+
+                    System.out.println("minuto " + i + " llego cliente " + cont + " tiempo espera " + c[j].getTienpoAtencion() + " tiempo salida " + tiempoSalida);
+
+//                    for (int k = 0; k < cajeros.length; k++) {
+//                        int x = 0;
+//                        if (x > cajeros[k]) {
+//                            x = cajeros[k];
+//
+//                            System.out.println("|atendiedo cajero  " + k + "tiempo a " + cajeros[k]);
+//
+//                        }
+//                        x = tiempoSalida;
+//                        System.out.println("cajero "+x);
+//                      
+//                    }
+
+                }
             }
 
+            System.out.println("minuto" + i);
+
         }
         return null;
     }
+    
 
-    public String simulacion2() {
-        boolean cajero[] = new boolean[5];
-        for (int i = 0; i < cajero.length; i++) {
-            System.out.println(cajero[i]);
-        }
-        return null;
-
-    }
-
+//    public String simulacion2() {
+//        boolean cajero[] = new boolean[5];
+//        for (int i = 0; i < cajero.length; i++) {
+//            System.out.println(cajero[i]);
+//        }
+//        return null;
+//
+//    }
 }
