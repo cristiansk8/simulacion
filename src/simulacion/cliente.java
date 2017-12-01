@@ -4,38 +4,7 @@
  * and open the template in the editor.
  */
 package simulacion;
-//  if (c[j].getEsatdo()=="libre"&& cajeros[0]==0 ) {
-//                    cajeros[0]=1;
-//                    c[j].setEsatdo("atendiendo");
-//                    
-//                    System.out.println("cliente "+ j + " cajero " + 1);
-//                  
-//                }
-//                
-//                 if (c[j].getEsatdo()=="libre"&& cajeros[1]==0) {
-//                    cajeros[1]=1;
-//                    c[j].setEsatdo("atendiendo");
-//                    
-//                    System.out.println("cliente "+ j + " cajero " + 2);
-//                }
-//                  if (c[j].getEsatdo()=="libre"&& cajeros[2]==0) {
-//                    cajeros[2]=1;
-//                    c[j].setEsatdo("atendiendo");
-//                    
-//                    System.out.println("cliente "+ j + " cajero " + 3);
-//                }
-//                   if (c[j].getEsatdo()=="libre"&& cajeros[3]==0) {
-//                    cajeros[3]=1;
-//                    c[j].setEsatdo("atendiendo");
-//                    
-//                    System.out.println("cliente "+ j + " cajero " + 4);
-//                }
-//                    if (c[j].getEsatdo()=="libre"&& cajeros[4]==0) {
-//                    cajeros[4]=1;
-//                    c[j].setEsatdo("atendiendo");
-//                    
-//                    System.out.println("cliente "+ j + " cajero " + 5);
-//                }
+             }
 
 /**
  *

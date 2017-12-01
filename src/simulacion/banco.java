@@ -5,6 +5,8 @@
  */
 package simulacion;
 
+import java.util.Scanner;
+
 /**
  *
  * @author tito
@@ -51,10 +53,15 @@ public class banco {
     }
 
     public String simulacion() {
+        Scanner reader = new Scanner(System.in);
+        
+        int tiempoSimulacion = reader.nextInt();
+        int numeroCajeros=reader.nextInt();
         int cont = 0;
-        int[] cajeros = new int[5];
+        int[] cajeros = new int[numeroCajeros];
+
         cliente[] c = clientes();
-        for (int i = 1; i < 120; i++) {
+        for (int i = 1; i < tiempoSimulacion; i++) {
             for (int j = 0; j < c.length; j++) {
                 cajeros[0] = c[0].getHoraLlegada() + c[0].getTienpoAtencion();
                 if (c[j].getHoraLlegada() == i) {
@@ -76,7 +83,6 @@ public class banco {
 //                        System.out.println("cajero "+x);
 //                      
 //                    }
-
                 }
             }
 
@@ -85,7 +91,6 @@ public class banco {
         }
         return null;
     }
-    
 
 //    public String simulacion2() {
 //        boolean cajero[] = new boolean[5];
